@@ -2,6 +2,7 @@ import { queryClient } from "context/react-query/QueryProvider";
 import {
 	createBrowserRouter,
 	createRoutesFromElements,
+	Outlet,
 	Route,
 } from "react-router-dom";
 import HomePage, { getHomeLoader } from "./home/HomePage";
