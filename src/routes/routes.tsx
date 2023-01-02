@@ -11,12 +11,26 @@ import Root from "./Root";
 export default createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<Root />}>
-			<Route index element={<HomePage />} loader={getHomeLoader(queryClient)} />
-			<Route
-				path="/login"
-				element={<LoginPage />}
-				action={getLoginAction(queryClient)}
-			/>
+			<Route path="/:lang" element={<AppWithLang />}>
+				<Route
+					index
+					element={<HomePage />}
+					loader={getHomeLoader(queryClient)}
+				/>
+				<Route
+					path="login"
+					element={<LoginPage />}
+					action={getLoginAction(queryClient)}
+				/>
+			</Route>
 		</Route>
 	)
 );
+
+function AppWithLang() {
+	return (
+		<div>
+			<Outlet />
+		</div>
+	);
+}
