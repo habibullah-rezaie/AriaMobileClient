@@ -4,6 +4,7 @@ import PasswordFied from "components/lib/inputs/PasswordInput";
 import TailSpinner from "components/lib/loaders/TailSpinner";
 import { useFormik } from "formik";
 import { FormEvent } from "react";
+import { useTranslation } from "react-i18next";
 import { HiExclamation } from "react-icons/hi";
 import {
 	Link,
@@ -17,6 +18,8 @@ import { object as yupObj, string as yupStr } from "yup";
 function LoginForm() {
 	const data: { user: User; error: { message: string } } =
 		useActionData() as any;
+
+	const { t } = useTranslation();
 
 	const { state } = useNavigation();
 	const submit = useSubmit();
@@ -54,7 +57,7 @@ function LoginForm() {
 			</div>
 
 			<div className="flex items-start mt-8">
-				<h2 className="font-bold text-2xl">Welcome</h2>
+				<h2 className="font-bold text-2xl">{t("login-form-welcome")}</h2>
 			</div>
 
 			<div className="space-y-6 mt-8">
