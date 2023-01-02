@@ -1,18 +1,21 @@
 import { userQuery } from "api/cache/queryBuilders/user";
 import PageLoader from "components/lib/loaders/PageLoader";
+import i18next from "i18next";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { QueryClient, useQuery } from "react-query";
 import { LoaderFunction, redirect, useNavigate } from "react-router-dom";
 
 function HomePage() {
 	const query = useQuery<{ email: string; role: string }>(userQuery());
+	const { i18n } = useTranslation();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (!query.isLoading && !query.isSuccess) {
-			navigate("/login");
+			navigate(`/${i18n.language}/login`);
 		}
-	}, [navigate, query.isLoading, query.isSuccess]);
+	}, [i18n.language, navigate, query.isLoading, query.isSuccess]);
 
 	if (query.isLoading) {
 		return (
@@ -35,7 +38,7 @@ export function getHomeLoader(queryClient: QueryClient): LoaderFunction {
 			const query = userQuery();
 			queryClient.fetchQuery(query);
 		} catch (err) {
-			return redirect("/login");
+			return redirect("/" + i18next.language + "/login");
 		}
 
 		return { user: null };
