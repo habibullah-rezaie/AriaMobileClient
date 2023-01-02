@@ -1,5 +1,5 @@
 import { userQuery } from "api/cache/queryBuilders/user";
-import { loginUser, LoginData } from "api/helpers/auth/login";
+import { LoginData, loginUser } from "api/helpers/auth/login";
 import { User } from "api/types/user";
 import LoginForm from "components/pages/LoginPage/LoginForm";
 import { QueryClient } from "react-query";
