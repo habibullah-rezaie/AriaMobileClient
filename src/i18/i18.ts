@@ -10,6 +10,13 @@ i18next
 		resources: {
 			en: {
 				translation: {
+					"login-form-welcome": "Welcome",
+				},
+			},
+			fa: {
+				translation: {
+					"login-form-welcome": "خوش آمدید",
+				},
 			},
 		},
 	});
