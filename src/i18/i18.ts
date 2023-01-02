@@ -9,7 +9,7 @@ i18next
 		fallbackLng: "en",
 		resources: {
 			en: {
-				translations: {},
+				translation: {
 			},
 		},
 	});
