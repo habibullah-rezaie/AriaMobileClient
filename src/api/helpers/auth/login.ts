@@ -3,7 +3,7 @@ import api from "../api";
 const loginAPI = (conf: RequestInit) => api("/login", conf);
 
 export async function loginUser({ email, password }: LoginData) {
-	return await loginAPI({
+	return loginAPI({
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

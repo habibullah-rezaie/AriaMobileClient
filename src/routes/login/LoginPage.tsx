@@ -3,23 +3,16 @@ import { LoginData, loginUser } from "api/helpers/auth/login";
 import { User } from "api/types/user";
 import LoginForm from "components/pages/LoginPage/LoginForm";
 import { QueryClient } from "react-query";
-import {
-	ActionFunction,
-	redirect,
-	useActionData,
-	useLoaderData,
-} from "react-router-dom";
+import { ActionFunction, redirect } from "react-router-dom";
 
 function LoginPage() {
-	useLoaderData();
-	const data = useActionData();
-
-	if (data) console.log("DATA", data);
 	return (
 		<div className="flex items-center justify-center w-screen h-screen">
 			<main className="w-[22rem]">
 				<LoginForm />
 			</main>
+
+			{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 		</div>
 	);
 }
@@ -39,6 +32,7 @@ export function getLoginAction(qClient: QueryClient): ActionFunction {
 					return resp.user;
 				});
 
+				console.log("", resp.user);
 				return redirect("/");
 			}
 		} catch (err: any) {
