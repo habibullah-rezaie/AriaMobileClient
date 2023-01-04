@@ -1,4 +1,5 @@
 import { FieldInputProps } from "formik";
+import { useTranslation } from "react-i18next";
 import Input from "./Input";
 
 function EmailField({
@@ -10,14 +11,18 @@ function EmailField({
 	isTouched: boolean;
 	props: FieldInputProps<any>;
 }) {
+	const { t } = useTranslation();
+
+	let placeholder = t("email");
+	placeholder = placeholder[0].toUpperCase() + placeholder.slice(1);
 	return (
 		<div className="">
 			<label htmlFor="email-input" className="sr-only">
-				Email
+				{placeholder}
 			</label>
 			<Input
 				id="email"
-				placeholder="Email"
+				placeholder={placeholder}
 				aria-required={"true"}
 				aria-invalid={error ? "true" : "false"}
 				wrapperStyle={{

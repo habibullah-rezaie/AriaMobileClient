@@ -1,3 +1,12 @@
 {
 	"login-form-welcome": "خوش آمدید",
+	"login-form-forget-password": "رمز عبور خود را فراموش کرده اید؟",
+	"error-comp-title": "خطا",
+	"login-form-email-required": "ایمیل ضروری می باشد.",
+	"login-form-password-required": "رمز عبور ضروری می باشد.",
+	"login-form-enter-valid-email": "لطفا یک ایمیل معتبر وارد کنید!",
+	"email": "ایمیل",
+	"password": "رمز عبور",
+	"login-form-sign-in": "ورود",
+	"login-form-signing-in": "در حال ورود"
 }

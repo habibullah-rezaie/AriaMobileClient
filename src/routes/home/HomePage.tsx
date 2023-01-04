@@ -8,14 +8,15 @@ import { LoaderFunction, redirect, useNavigate } from "react-router-dom";
 
 function HomePage() {
 	const query = useQuery<{ email: string; role: string }>(userQuery());
+
 	const { i18n } = useTranslation();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (!query.isLoading && !query.isSuccess) {
-			navigate(`/${i18n.language}/login`);
+			navigate(`/${i18n.resolvedLanguage}/login`);
 		}
-	}, [i18n.language, navigate, query.isLoading, query.isSuccess]);
+	}, [i18n.resolvedLanguage, navigate, query.isLoading, query.isSuccess]);
 
 	if (query.isLoading) {
 		return (
@@ -31,6 +32,7 @@ function HomePage() {
 		</div>
 	);
 }
+
 // hit the GET /user in here so that you make sure
 export function getHomeLoader(queryClient: QueryClient): LoaderFunction {
 	return async () => {

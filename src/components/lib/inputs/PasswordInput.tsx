@@ -1,4 +1,5 @@
 import { FieldInputProps } from "formik";
+import { useTranslation } from "react-i18next";
 import Input from "./Input";
 
 function PasswordFied({
@@ -10,14 +11,19 @@ function PasswordFied({
 	isTouched: boolean;
 	props: FieldInputProps<any>;
 }) {
+	const { t } = useTranslation();
+
+	let placeholder = t("password");
+	placeholder = placeholder[0].toUpperCase() + placeholder.slice(1);
+
 	return (
 		<div className="">
 			<label htmlFor="password" className="sr-only">
-				Password
+				{placeholder}
 			</label>
 			<Input
 				id="password"
-				placeholder="Password"
+				placeholder={placeholder}
 				type={"password"}
 				aria-required={true}
 				wrapperStyle={{

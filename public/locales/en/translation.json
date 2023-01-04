@@ -1,3 +1,12 @@
 {
 	"login-form-welcome": "Welcome",
+	"login-form-forget-password": "Forgot Password?",
+	"error-comp-title": "Error",
+	"login-form-email-required": "Email is required!",
+	"login-form-password-required": "Password is required!",
+	"login-form-enter-valid-email": "Please enter a valid email!",
+	"email": "email",
+	"password": "password",
+	"login-form-sign-in": "Sign In",
+	"login-form-signing-in": "Signing In"
 }

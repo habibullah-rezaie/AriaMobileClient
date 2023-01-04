@@ -3,6 +3,7 @@ import EmailField from "components/lib/inputs/EmailInput";
 import PasswordFied from "components/lib/inputs/PasswordInput";
 import TailSpinner from "components/lib/loaders/TailSpinner";
 import { useFormik } from "formik";
+import { t } from "i18next";
 import { FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { HiExclamation } from "react-icons/hi";
@@ -19,7 +20,7 @@ function LoginForm() {
 	const data: { user: User; error: { message: string } } =
 		useActionData() as any;
 
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
 
 	const { state } = useNavigation();
 	const submit = useSubmit();
@@ -37,7 +38,7 @@ function LoginForm() {
 
 		if (!errors.email && !errors.password) {
 			submit(e.currentTarget, {
-				action: "/login",
+				action: `/${i18n.resolvedLanguage}/login`,
 				method: "post",
 			});
 		}
@@ -77,7 +78,7 @@ function LoginForm() {
 						<section className="ml-1 py-2 px-4 rounded-md bg-red-200">
 							<div className="flex flex-row items-center space-x-2 text-red-700 font-semibold">
 								<HiExclamation />
-								<h6>Error</h6>
+								<h6>{t("error-comp-title")}</h6>
 							</div>
 							<p className="w-full mt-2 text-start text-sm text-red-700">
 								{data.error?.message}
@@ -93,7 +94,11 @@ function LoginForm() {
 						disabled={isSubmitting || !isValid}
 					>
 						<div className="text-lg w-fit flex flex-row items-center space-x-4">
-							<span>{state !== "submitting" ? "Sign In" : "Signing In"}</span>
+							<span>
+								{state !== "submitting"
+									? t("login-form-sign-in")
+									: t("login-form-signing-in")}
+							</span>
 							{state === "submitting" && (
 								<TailSpinner
 									className="leading-7"
@@ -106,7 +111,9 @@ function LoginForm() {
 
 					<div className="flex justify-start mt-1">
 						<label htmlFor="password-input" className="text-[#666F75] text-sm">
-							<Link to="/forgot-password">Forgot Password?</Link>
+							<Link to="/forgot-password">
+								{t("login-form-forget-password")}
+							</Link>
 						</label>
 					</div>
 				</div>
@@ -119,17 +126,17 @@ function useLoginFormik() {
 	const formik = useFormik({
 		initialValues: { email: "", password: "" },
 		initialErrors: {
-			email: "Email is required!",
-			password: "Password is required!",
+			email: t("login-form-email-required"),
+			password: t("login-form-password-required"),
 		},
 		onSubmit: (_, { setSubmitting }) => {
 			setSubmitting(false);
 		},
 		validationSchema: yupObj({
 			email: yupStr()
-				.email("Enter valid email!")
-				.required("Email is required!"),
-			password: yupStr().required("Password is Required"),
+				.email(t("login-form-enter-valid-email").toString())
+				.required(t("login-form-email-required").toString()),
+			password: yupStr().required(t("login-form-password-required").toString()),
 		}),
 	});
 
