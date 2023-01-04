@@ -1,9 +1,11 @@
+import { renewToken } from "api/helpers/auth/token";
+import PageLoader from "components/lib/loaders/PageLoader";
+import "i18/i18";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
+import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import "i18/i18";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -11,7 +13,15 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<App />
+		<React.Suspense
+			fallback={
+				<div className="w-screen h-screen flex items-center justify-center">
+					<PageLoader className="w-40 h-40 fill-[#16161A]/50" />
+				</div>
+			}
+		>
+			<App />
+		</React.Suspense>
 	</React.StrictMode>
 );
 
