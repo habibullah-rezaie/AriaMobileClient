@@ -2,17 +2,17 @@ import { queryClient } from "context/react-query/QueryProvider";
 import {
 	createBrowserRouter,
 	createRoutesFromElements,
-	Outlet,
 	Route,
 } from "react-router-dom";
 import HomePage, { getHomeLoader } from "./home/HomePage";
 import LoginPage, { getLoginAction } from "./login/LoginPage";
-import Root from "./Root";
+import LangRoute from "./root/LangRoute";
+import Root from "./root/Root";
 
 export default createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<Root />}>
-			<Route path="/:lang" element={<AppWithLang />}>
+			<Route path="/:lang" element={<LangRoute />}>
 				<Route
 					index
 					element={<HomePage />}
@@ -27,11 +27,3 @@ export default createBrowserRouter(
 		</Route>
 	)
 );
-
-function AppWithLang() {
-	return (
-		<div>
-			<Outlet />
-		</div>
-	);
-}

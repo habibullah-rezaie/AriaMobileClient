@@ -1,7 +1,8 @@
 import config from "app.config";
-import QueryProvider from "context/react-query/QueryProvider";
-import { useEffect } from "react";
+import { queryClient } from "context/react-query/QueryProvider";
+import { useLayoutEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { QueryClientProvider } from "react-query";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 // Using suspense
@@ -12,10 +13,11 @@ function Root() {
 	const { i18n } = useTranslation();
 
 	// Choose the right language
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (i18n.isInitialized) {
 			if (params.lang === i18n.resolvedLanguage) {
 				document.dir = i18n.dir(params.lang);
+				console.log(i18n.dir(params.lang), params.lang);
 				return;
 			}
 
@@ -23,9 +25,10 @@ function Root() {
 				params.lang &&
 				config.languages[params.lang as keyof typeof config.languages]
 			) {
-				i18n.changeLanguage(params.lang);
-				document.dir = i18n.dir(params.lang);
-				navigate(`/${params.lang}`);
+				i18n.changeLanguage(params.lang).then(() => {
+					document.dir = i18n.dir(params.lang);
+					navigate(`/${params.lang}`);
+				});
 			} else {
 				document.dir = i18n.dir(i18n.resolvedLanguage);
 				navigate(`/${i18n.resolvedLanguage}`);
@@ -35,10 +38,11 @@ function Root() {
 
 	return (
 		<div>
-			<QueryProvider>
+			<QueryClientProvider client={queryClient}>
 				<Outlet />
-			</QueryProvider>
+			</QueryClientProvider>
 		</div>
 	);
 }
+
 export default Root;
