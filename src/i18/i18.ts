@@ -9,18 +9,6 @@ i18next
 	.use(I18NextHttpBackend)
 	.init({
 		fallbackLng: "en",
-		resources: {
-			en: {
-				translation: {
-					"login-form-welcome": "Welcome",
-				},
-			},
-			fa: {
-				translation: {
-					"login-form-welcome": "خوش آمدید",
-				},
-			},
-		},
 		saveMissing: true,
 		debug: true,
 	});
