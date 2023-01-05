@@ -1,4 +1,3 @@
-import { renewToken } from "api/helpers/auth/token";
 import PageLoader from "components/lib/loaders/PageLoader";
 import "i18/i18";
 import React from "react";
