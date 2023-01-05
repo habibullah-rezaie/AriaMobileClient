@@ -25,10 +25,8 @@ function PasswordFied({
 				id="password"
 				placeholder={placeholder}
 				type={"password"}
-				aria-required={true}
-				wrapperStyle={{
-					borderColor: isTouched && error ? "rgb(255,0,0,0.6)" : undefined,
-				}}
+				aria-required={"true"}
+				isInvalid={Boolean(isTouched && error)}
 				{...props}
 			/>
 			{isTouched && error ? (

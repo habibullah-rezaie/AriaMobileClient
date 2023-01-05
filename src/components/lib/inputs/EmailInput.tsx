@@ -25,9 +25,7 @@ function EmailField({
 				placeholder={placeholder}
 				aria-required={"true"}
 				aria-invalid={error ? "true" : "false"}
-				wrapperStyle={{
-					borderColor: isTouched && error ? "rgb(255,0,0,0.6)" : undefined,
-				}}
+				isInvalid={Boolean(isTouched && error)}
 				{...props}
 			/>
 			{isTouched && error ? (
