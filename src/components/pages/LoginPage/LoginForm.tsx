@@ -46,13 +46,20 @@ function LoginForm() {
 
 	return (
 		<form
-			className="font-roboto text-[#16161A] text-sm"
+			className={`${
+				i18n.resolvedLanguage === "fa" ? "font-iranSansX" : "font-roboto"
+			} text-[#16161A] text-sm`}
 			id="login-form"
 			onSubmit={onSubmit}
 		>
-			<div className="flex flex-row justify-center items-center space-x-2.5">
-				<Logo className="h-7" />
-				<h1 className="leading-9 text-[2rem]">
+			<div
+				className="flex flex-row justify-center items-center space-x-2.5"
+				dir="ltr"
+			>
+				<div className="h-fit mb-0.5">
+					<Logo className="h-7" />
+				</div>
+				<h1 className="leading-[3rem] text-[2rem] font-poppins">
 					<strong>Aria</strong> Mobile
 				</h1>
 			</div>
@@ -76,7 +83,7 @@ function LoginForm() {
 				{data?.error && (
 					<div className="w-full bg-red-700 rounded-md">
 						<section className="ml-1 py-2 px-4 rounded-md bg-red-200">
-							<div className="flex flex-row items-center space-x-2 text-red-700 font-semibold">
+							<div className="flex flex-row items-center space-x-2 text-red-700 font-bold">
 								<HiExclamation />
 								<h6>{t("error-comp-title")}</h6>
 							</div>
