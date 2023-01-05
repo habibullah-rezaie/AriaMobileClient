@@ -5,6 +5,7 @@ type CustomProps = {
 	wrapperClassName?: string;
 	replaceWrapperCls?: boolean;
 	replaceClass?: boolean;
+	isInvalid?: boolean;
 };
 
 type InputProps = CustomProps & React.ComponentProps<"input">;
@@ -15,6 +16,7 @@ function Input({
 	replaceWrapperCls = false,
 	className = "",
 	replaceClass = false,
+	isInvalid = false,
 	style,
 	...props
 }: InputProps) {
@@ -23,7 +25,11 @@ function Input({
 			className={
 				replaceWrapperCls
 					? wrapperClassName
-					: `w-full border-[1px] rounded-md border-gray-300 focus-within:border-gray-700 focus-within:ring-2 focus-within:ring-gray-300/50 focus-within:ring-offset-1 ${wrapperClassName}`
+					: `w-full border-[1px] rounded-md ${
+							!isInvalid
+								? "border-appGray/50 hover:ring-[3px] hover:ring-appGray/50 focus-within:border-appText"
+								: "border-appRed/50 hover:ring-[3px] hover:ring-appRed/50 focus-within:border-appRed"
+					  }  ${wrapperClassName}`
 			}
 			style={{ ...wrapperStyle }}
 		>
