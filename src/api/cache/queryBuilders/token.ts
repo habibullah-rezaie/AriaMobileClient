@@ -1,4 +1,4 @@
-import { renewToken } from "api/helpers/auth/token";
+import { renewToken } from "api/fetchers/auth/token";
 import { UseQueryOptions } from "react-query";
 import queryKeys from "../queryKeys";
 

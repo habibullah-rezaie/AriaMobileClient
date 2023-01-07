@@ -18,7 +18,11 @@ function LangRoute() {
 	console.log(query.status, query.isStale, query.isFetching);
 
 	return (
-		<div>
+		<div
+			className={`overflow-hidden text-appBase-normal text-appBase ${
+				i18n.resolvedLanguage === "fa" ? "font-iranSansX" : ""
+			}`}
+		>
 			<Outlet />
 		</div>
 	);

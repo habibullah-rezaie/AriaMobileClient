@@ -1,4 +1,5 @@
 import { User } from "api/types/user";
+import Button from "components/lib/buttons/Button";
 import EmailField from "components/lib/inputs/EmailInput";
 import PasswordFied from "components/lib/inputs/PasswordInput";
 import TailSpinner from "components/lib/loaders/TailSpinner";
@@ -13,7 +14,7 @@ import {
 	useNavigation,
 	useSubmit,
 } from "react-router-dom";
-import Logo from "routes/login/Logo";
+import Logo from "routes/unauthenticated/Logo";
 import { object as yupObj, string as yupStr } from "yup";
 
 function LoginForm() {
@@ -95,10 +96,10 @@ function LoginForm() {
 				)}
 
 				<div>
-					<button
-						className={`w-full flex flex-row items-center justify-center bg-appBase hover:bg-appBase/80 focus:ring-2 focus:ring-appBase focus:ring-offset-[3px] active:ring-2 active:ring-appBase active:ring-offset-[3px] disabled:cursor-not-allowed disabled:bg-appBase/80 disabled:ring-appBase/80  transition-opacity duration-300 text-center text-lg text-white py-4 rounded-md`}
+					<Button
 						type="submit"
 						disabled={isSubmitting || !isValid}
+						className="w-full"
 					>
 						<div className="text-lg w-fit flex flex-row items-center space-x-4">
 							<span>
@@ -114,7 +115,7 @@ function LoginForm() {
 								/>
 							)}
 						</div>
-					</button>
+					</Button>
 
 					<div className="flex justify-start mt-1">
 						<label htmlFor="password-input" className="text-[#666F75] text-sm">

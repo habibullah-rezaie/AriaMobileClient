@@ -8,5 +8,12 @@
 	"email": "email",
 	"password": "password",
 	"login-form-sign-in": "Sign In",
-	"login-form-signing-in": "Signing In"
+	"login-form-signing-in": "Signing In",
+	"formatNumber": "{{val, number}}",
+	"todays-stats": "Today's Stats",
+	"todays-total-income": "Total income",
+	"todays-total-billed-sell": "Total of billed sells",
+	"todays-total-unbilled-sell": "Total of unbilled sells",
+	"todays-total-withdraws": "Total of withdraws",
+	"todays-new-items": "New Products"
 }

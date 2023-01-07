@@ -8,5 +8,22 @@
 	"email": "ایمیل",
 	"password": "رمز عبور",
 	"login-form-sign-in": "ورود",
-	"login-form-signing-in": "در حال ورود"
+	"login-form-signing-in": "در حال ورود",
+	"formatNumber": "{{val, number}}",
+	"todays-stats": "آمار امروز",
+	"todays-total-income": "دخل مجموعی",
+	"todays-total-billed-sell": "مجموع فروش همراه بل",
+	"todays-total-unbilled-sell": "مجموع فروش بدون بل",
+	"todays-total-withdraws": "مجموع برداشت ها",
+	"todays-new-items": "محصول جدید",
+	"topbar-new-item": "محصول جدید +",
+	"topbar-new-bill": "بل جدید +",
+	"topbar-new-withdraw": "برداشت جدید +",
+	"home": "خانه",
+	"new-bill": "بل جدید",
+	"new-item": "محصول جدید",
+	"new-withdraw": "برداشت جدید",
+	"finance": "مالی",
+	"statistics": "آمار",
+	"settings": "تنظیمات"
 }

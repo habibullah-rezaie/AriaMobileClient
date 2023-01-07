@@ -1,4 +1,4 @@
-import { getUser } from "api/helpers/user/userGET";
+import { getUser } from "api/fetchers/user/userGET";
 import { User } from "api/types/user";
 import { QueryClient } from "react-query";
 import queryKeys from "../queryKeys";

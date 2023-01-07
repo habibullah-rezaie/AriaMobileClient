@@ -1,12 +1,20 @@
 import { userQuery } from "api/cache/queryBuilders/user";
 import PageLoader from "components/lib/loaders/PageLoader";
+import TopBar from "components/pages/HomePage/shared/TopBar";
+import VerticalNavBar from "components/pages/HomePage/shared/VerticalNavBar";
+import TodayStats from "components/shared/TodayStats";
 import i18next from "i18next";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { QueryClient, useQuery } from "react-query";
-import { LoaderFunction, redirect, useNavigate } from "react-router-dom";
+import {
+	LoaderFunction,
+	Outlet,
+	redirect,
+	useNavigate,
+} from "react-router-dom";
 
-function HomePage() {
+function AuthenticatedPage() {
 	const query = useQuery<{ email: string; role: string }>(userQuery());
 
 	const { i18n } = useTranslation();
@@ -27,8 +35,15 @@ function HomePage() {
 	}
 
 	return (
-		<div>
-			Hello {query.data?.email}, You are a {query.data?.role}
+		<div className={`grid grid-flow-col grid-rows-1 grid-cols-[auto_1fr]`}>
+			<div className={`w-fit grid grid-flow-col grid-rows-1`}>
+				<VerticalNavBar />
+				<TodayStats />
+			</div>
+			<div className="w-full h-full flex flex-col space-x-1  pt-[3.33rem] px-[1.67rem]">
+				<TopBar />
+				<Outlet />
+			</div>
 		</div>
 	);
 }
@@ -47,4 +62,4 @@ export function getHomeLoader(queryClient: QueryClient): LoaderFunction {
 	};
 }
 
-export default HomePage;
+export default AuthenticatedPage;
