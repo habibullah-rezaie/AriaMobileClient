@@ -17,3 +17,47 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+@layer components {
+	.heading-1 {
+		font-size: 3.33rem;
+		font-weight: 700;
+		line-height: 150%;
+	}
+
+	.heading-2 {
+		font-size: 2rem;
+		font-weight: 700;
+		line-height: 150%;
+	}
+
+	.heading-3 {
+		font-size: 1.67rem;
+		font-weight: 500;
+		line-height: 150%;
+	}
+
+	.heading-4 {
+		font-size: 1.14rem;
+		font-weight: 700;
+		line-height: 150%;
+	}
+
+	.text-appBase-normal {
+		font-size: 1rem;
+		font-weight: 500;
+		line-height: 200%;
+	}
+
+	.text-appBase-bold {
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 200%;
+	}
+
+	.text-caption {
+		font-size: 0.86rem;
+		font-weight: 500;
+		line-height: 150%;
+	}
+}
