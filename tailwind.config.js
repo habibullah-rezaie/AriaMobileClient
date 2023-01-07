@@ -9,7 +9,8 @@ module.exports = {
 				iranSansX: "'IRANSansX'",
 			},
 			colors: {
-				appGray: "#909090",
+				appGray: "#d4d4d4",
+				thirdGray: "#faf9fb",
 				appRed: "#DC2626",
 				appText: "#6b7280",
 				appBase: "#171717",
