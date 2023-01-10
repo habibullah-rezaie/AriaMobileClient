@@ -15,7 +15,6 @@ import {
 	useNavigation,
 	useSubmit,
 } from "react-router-dom";
-import Logo from "routes/unauthenticated/Logo";
 import { object as yupObj, string as yupStr } from "yup";
 
 function LoginForm() {
