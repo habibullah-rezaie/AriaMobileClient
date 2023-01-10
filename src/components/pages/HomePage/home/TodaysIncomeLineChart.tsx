@@ -1,70 +1,83 @@
-import { Card, LineChart, Title } from "@tremor/react";
+import SectionCard from "components/lib/cards/SectionCard";
+import { useMemo } from "react";
+import { AxisOptions, Chart } from "react-charts";
 import { useTranslation } from "react-i18next";
 
-const chartdata = [
-	{
-		year: 1951,
-		"Population growth rate": 1.74,
-	},
-	{
-		year: 1952,
-		"Population growth rate": 1.93,
-	},
-	{
-		year: 1953,
-		"Population growth rate": 1.9,
-	},
-	{
-		year: 1954,
-		"Population growth rate": 1.98,
-	},
-	{
-		year: 1955,
-		"Population growth rate": 2,
-	},
-];
+export type TodayIncomeGraphData = {
+	time: Date;
+	income: number;
+};
 
-const dataFormatter = (number: number) =>
-	`${Intl.NumberFormat("us").format(number).toString()}%`;
+const curTimeStamp = get7AMToday();
 
 function TodaysIncomeLineChart() {
 	const { t } = useTranslation();
-	return (
-		// <Card>
-		// 	<Text>{t("home-chart-today-income-stats")}</Text>
 
-		// 	<LineChart
-		// 		categories={["time"]}
-		// 		data={data}
-		// 		dataKey="income"
-		// 		colors={["blue"]}
-		// 		height="h-80"
-		// 		marginTop="mt-3"
-		// 		showXAxis={true}
-		// 		showYAxis={true}
-		// 		yAxisWidth={"w-20"}
-		// 		showTooltip={true}
-		// 		valueFormatter={(num: number) => {
-		// 			return `${Intl.NumberFormat("en").format(num).toString()}`;
-		// 		}}
-		// 	/>
-		// </Card>
-		<Card>
-			<Title>Population growth rate (1951 to 2021)</Title>
-			<LineChart
-				data={chartdata}
-				dataKey="year"
-				categories={["Population growth rate"]}
-				colors={["blue"]}
-				valueFormatter={dataFormatter}
-				marginTop="mt-6"
-				yAxisWidth="w-10"
-				height="h-40"
-			/>
-		</Card>
+	const chartdata = [
+		{
+			label: "Sells",
+			data: [...new Array(10)].map((_, i) => {
+				let time = new Date(curTimeStamp + i * 3600 * 1000);
+
+				let money = Math.random() * 10000;
+
+				return { time, income: money };
+			}),
+		},
+	];
+
+	const primaryAxis = useMemo(
+		(): AxisOptions<TodayIncomeGraphData> => ({
+			getValue: (dataObj) => dataObj.time,
+			scaleType: "localTime",
+		}),
+		[]
+	);
+
+	const secondaryAxes = useMemo(
+		(): AxisOptions<TodayIncomeGraphData>[] => [
+			{
+				getValue: (dataObj) => dataObj.income,
+				elementType: "line",
+			},
+		],
+		[]
+	);
+
+	return (
+		<SectionCard title={t("todays-income-stats")} className="w-full">
+			<div
+				style={{
+					width: "calc(100%-3.34rem)",
+					height: "16rem",
+					minWidth: "24.5rem",
+				}}
+				className="flex items-center justify-center relative"
+			>
+				<Chart
+					options={{
+						data: chartdata,
+						primaryAxis,
+						secondaryAxes,
+						tooltip: {
+							show: false,
+						},
+					}}
+				/>
+			</div>
+		</SectionCard>
 	);
 }
 
 // import { Card, Title, LineChart } from "@tremor/react";
 
 export default TodaysIncomeLineChart;
+function get7AMToday() {
+	let now = Date.now();
+	let curTimeStamp = now - (now % (86400 * 1000));
+	const curDate = new Date(curTimeStamp);
+	curTimeStamp -= curDate.getHours() * 3600 * 1000;
+
+	curTimeStamp += 7 * 3600 * 1000;
+	return curTimeStamp;
+}
