@@ -1,4 +1,6 @@
+import { logoutUser } from "api/fetchers/auth/login";
 import HomeIcon from "components/Icons/HomeIcon";
+import Logo from "components/Icons/Logo";
 import SettingsIcon from "components/Icons/SettingsIcon";
 import ImgWithLoader from "components/lib/Img/ImgWithLoader";
 import NavItem from "components/shared/NavItem";
@@ -6,12 +8,14 @@ import { useTranslation } from "react-i18next";
 import { AiOutlinePoweroff } from "react-icons/ai";
 import { BiDollar } from "react-icons/bi";
 import { FiBarChart2 } from "react-icons/fi";
-import { Link } from "react-router-dom";
-import Logo from "routes/unauthenticated/Logo";
+import { useQueryClient } from "react-query";
+import { Link, useNavigate } from "react-router-dom";
 import profPic from "./../../../../assets/img/DefaultProfile.png";
 
 function VerticalNavBar() {
+	const navigate = useNavigate();
 	const { i18n } = useTranslation();
+	const queryClient = useQueryClient();
 	return (
 		<div className="h-screen w-[6rem] py-[2.5rem] px-1.5rem bg-thirdGray">
 			<nav
@@ -68,7 +72,16 @@ function VerticalNavBar() {
 				</div>
 
 				<div className="space-y-4 flex flex-col items-center">
-					<button className={`w-fit h-fit rounded-lg p-0 self-center`}>
+					<button
+						className={`w-fit h-fit rounded-lg p-0 self-center`}
+						onClick={async () => {
+							try {
+								await logoutUser();
+							} catch (err) {}
+							queryClient.clear();
+							navigate(`/${i18n.resolvedLanguage}/`, { replace: true });
+						}}
+					>
 						<AiOutlinePoweroff className={`w-6 h-6 text-appRed`} />
 					</button>
 					<Link
