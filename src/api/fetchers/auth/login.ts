@@ -12,6 +12,10 @@ export async function loginUser({ email, password }: LoginData) {
 	});
 }
 
+export async function logoutUser() {
+	return api("/logout", { method: "DELETE" });
+}
+
 export type LoginData = {
 	email: string;
 	password: string;
