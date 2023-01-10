@@ -1,19 +1,25 @@
 import { useRenewTkQuery } from "hooks/cache/auth";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 function LangRoute() {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const [refetchToken, setRefetchToken] = useState(
+		!location.pathname.includes("/login")
+	);
 	const { i18n } = useTranslation();
+
 	const errorHandler = useCallback(
 		(err: any) => {
+			setRefetchToken(false);
 			navigate(`/${i18n.resolvedLanguage}/login`);
 		},
 		[i18n.resolvedLanguage, navigate]
 	);
 
-	const query = useRenewTkQuery(errorHandler);
+	const query = useRenewTkQuery(refetchToken, errorHandler);
 
 	console.log(query.status, query.isStale, query.isFetching);
 
