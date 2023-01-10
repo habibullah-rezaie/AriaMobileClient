@@ -3,6 +3,7 @@ import Button from "components/lib/buttons/Button";
 import EmailField from "components/lib/inputs/EmailInput";
 import PasswordFied from "components/lib/inputs/PasswordInput";
 import TailSpinner from "components/lib/loaders/TailSpinner";
+import LogoHorizontal from "components/shared/LogoHorizontal";
 import { useFormik } from "formik";
 import { t } from "i18next";
 import { FormEvent } from "react";
