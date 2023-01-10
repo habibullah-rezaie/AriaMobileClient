@@ -1,9 +1,12 @@
 import { renewTkQueryOpts } from "api/cache/queryBuilders/token";
 import { useQuery } from "react-query";
 
-export function useRenewTkQuery(onError?: (err: unknown) => void) {
+export function useRenewTkQuery(
+	autoRefetch = true,
+	onError?: (err: unknown) => void
+) {
 	const query = useQuery({
-		...renewTkQueryOpts(),
+		...renewTkQueryOpts(autoRefetch),
 		onError,
 	});
 

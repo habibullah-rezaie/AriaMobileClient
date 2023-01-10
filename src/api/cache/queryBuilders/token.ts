@@ -2,12 +2,9 @@ import { renewToken } from "api/fetchers/auth/token";
 import { UseQueryOptions } from "react-query";
 import queryKeys from "../queryKeys";
 
-export function renewTkQueryOpts(): UseQueryOptions<
-	null,
-	unknown,
-	null,
-	readonly ["token"]
-> {
+export function renewTkQueryOpts(
+	autoRefetch: boolean
+): UseQueryOptions<null, unknown, null, readonly ["token"]> {
 	return {
 		queryKey: queryKeys.token,
 		queryFn: async () => {
@@ -18,7 +15,7 @@ export function renewTkQueryOpts(): UseQueryOptions<
 			}
 		},
 		retry: false,
-		refetchInterval: 50 * 60 * 1000,
+		refetchInterval: autoRefetch ? 50 * 60 * 1000 : undefined,
 		refetchOnWindowFocus: true,
 	};
 }
