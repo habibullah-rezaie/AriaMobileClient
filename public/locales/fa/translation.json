@@ -11,6 +11,7 @@
 	"login-form-signing-in": "در حال ورود",
 	"formatNumber": "{{val, number}}",
 	"todays-stats": "آمار امروز",
+	"todays-income-stats": "آمار درآمد امروز",
 	"todays-total-income": "دخل مجموعی",
 	"todays-total-billed-sell": "مجموع فروش همراه بل",
 	"todays-total-unbilled-sell": "مجموع فروش بدون بل",
@@ -25,5 +26,10 @@
 	"new-withdraw": "برداشت جدید",
 	"finance": "مالی",
 	"statistics": "آمار",
-	"settings": "تنظیمات"
+	"settings": "تنظیمات",
+	"unbilled-sell": "فروش بدون بل",
+	"price": "قیمت",
+	"count": "تعداد",
+	"unbilled-form-register-btn": "ثبت کن +",
+	"item": "محصول"
 }
