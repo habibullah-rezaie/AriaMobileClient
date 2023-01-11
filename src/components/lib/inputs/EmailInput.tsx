@@ -5,25 +5,43 @@ import Input from "./Input";
 function EmailField({
 	error,
 	isTouched,
+	showLabel = false,
+	label,
 	props,
+	isRequired = true,
+	placeholder: propPlaceholder,
 }: {
 	error?: string;
 	isTouched: boolean;
+	showLabel?: boolean;
+	label?: string;
+	isRequired?: boolean;
+	placeholder?: string;
 	props: FieldInputProps<any>;
 }) {
 	const { t } = useTranslation();
 
-	let placeholder = t("email");
+	const defaultLabel = t("email");
+	let placeholder = !propPlaceholder ? defaultLabel : propPlaceholder;
 	placeholder = placeholder[0].toUpperCase() + placeholder.slice(1);
+
+	if (isRequired) {
+		placeholder += " (" + t("form-placeholder-required") + ")";
+	}
 	return (
-		<div className="">
-			<label htmlFor="email-input" className="sr-only">
-				{placeholder}
+		<div className="flex flex-col">
+			<label
+				htmlFor="email-input"
+				className={`text-appBase-normal text-appText ${
+					document.dir === "rtl" ? "text-right" : "text-left"
+				} ${!showLabel ? "sr-only" : "mb-4"}`}
+			>
+				{!label ? defaultLabel : label}
 			</label>
 			<Input
 				id="email"
 				placeholder={placeholder}
-				aria-required={"true"}
+				aria-required={isRequired ? "true" : "false"}
 				aria-invalid={error ? "true" : "false"}
 				isInvalid={Boolean(isTouched && error)}
 				{...props}
