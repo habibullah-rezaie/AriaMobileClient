@@ -1,11 +1,8 @@
 import { User } from "api/types/user";
-import Button from "components/lib/buttons/Button";
 import EmailField from "components/lib/inputs/EmailInput";
 import PasswordFied from "components/lib/inputs/PasswordInput";
-import TailSpinner from "components/lib/loaders/TailSpinner";
 import LogoHorizontal from "components/shared/LogoHorizontal";
-import { useFormik } from "formik";
-import { t } from "i18next";
+import { useLoginFormik } from "hooks/forms/unauthenticated";
 import { FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { HiExclamation } from "react-icons/hi";
@@ -15,7 +12,7 @@ import {
 	useNavigation,
 	useSubmit,
 } from "react-router-dom";
-import { object as yupObj, string as yupStr } from "yup";
+import AuthFormSubmitBtn from "../AuthFormSubmitBtn";
 
 function LoginForm() {
 	const data: { user: User; error: { message: string } } =
@@ -86,30 +83,16 @@ function LoginForm() {
 				)}
 
 				<div>
-					<Button
-						type="submit"
+					<AuthFormSubmitBtn
 						disabled={isSubmitting || !isValid}
-						className="w-full"
-					>
-						<div className="text-lg w-fit flex flex-row items-center space-x-4">
-							<span>
-								{state !== "submitting"
-									? t("login-form-sign-in")
-									: t("login-form-signing-in")}
-							</span>
-							{state === "submitting" && (
-								<TailSpinner
-									className="leading-7"
-									width="1.25rem"
-									height={"1.25rem"}
-								/>
-							)}
-						</div>
-					</Button>
+						isLoading={state === "submitting"}
+						text={t("login-form-sign-in")}
+						loadingText={t("login-form-signing-in")}
+					/>
 
-					<div className="flex justify-start mt-1">
+					<div className="flex justify-start mt-2">
 						<label htmlFor="password-input" className="text-[#666F75] text-sm">
-							<Link to="/forgot-password">
+							<Link to={`/${i18n.resolvedLanguage}/forgot-password`}>
 								{t("login-form-forget-password")}
 							</Link>
 						</label>
@@ -118,27 +101,6 @@ function LoginForm() {
 			</div>
 		</form>
 	);
-}
-
-function useLoginFormik() {
-	const formik = useFormik({
-		initialValues: { email: "", password: "" },
-		initialErrors: {
-			email: t("login-form-email-required"),
-			password: t("login-form-password-required"),
-		},
-		onSubmit: (_, { setSubmitting }) => {
-			setSubmitting(false);
-		},
-		validationSchema: yupObj({
-			email: yupStr()
-				.email(t("login-form-enter-valid-email").toString())
-				.required(t("login-form-email-required").toString()),
-			password: yupStr().required(t("login-form-password-required").toString()),
-		}),
-	});
-
-	return formik;
 }
 
 export default LoginForm;
