@@ -22,3 +22,22 @@ export function useLoginFormik() {
 
 	return formik;
 }
+
+export function useForgetPasswdFormik() {
+	const formik = useFormik({
+		initialValues: { email: "" },
+		initialErrors: {
+			email: t("login-form-email-required"),
+		},
+		onSubmit: (_, { setSubmitting }) => {
+			setSubmitting(false);
+		},
+		validationSchema: yupObj({
+			email: yupStr()
+				.email(t("login-form-enter-valid-email").toString())
+				.required(t("login-form-email-required").toString()),
+		}),
+	});
+
+	return formik;
+}
