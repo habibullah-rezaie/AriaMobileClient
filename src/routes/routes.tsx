@@ -17,6 +17,7 @@ import Settings from "./authenticated/Settings";
 import HomeWrapperPage from "./authenticated/home/HomeWrapperPage";
 import NewBillPage from "./authenticated/home/NewBillPage";
 import NewItemPage from "./authenticated/home/NewItemPage";
+import ForgotPassword from "./unauthenticated/ForgotPassword";
 
 export default createBrowserRouter(
 	createRoutesFromElements(
@@ -42,6 +43,7 @@ export default createBrowserRouter(
 					element={<LoginPage />}
 					action={getLoginAction(queryClient)}
 				/>
+				<Route path="forgot-password" element={<ForgotPassword />} />
 			</Route>
 		</Route>
 	)
