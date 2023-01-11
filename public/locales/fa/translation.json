@@ -31,5 +31,11 @@
 	"price": "قیمت",
 	"count": "تعداد",
 	"unbilled-form-register-btn": "ثبت کن +",
-	"item": "محصول"
+	"item": "محصول",
+	"form-placeholder-required": "ضروری",
+	"forgot-passwd--emailLabel": "لطفا ایمیل خود را وارد کنید:",
+	"forgot-passwd--forgotPassword": "رمز خود را فراموش کرده اید؟",
+	"forgot-passwd--btnText": "درخواست رمز",
+	"forgot-passwd--btnLoadingText": "درخواست رمز",
+	"forgot-passwd--toLogin": "برگشت به صفحه ورود"
 }
